@@ -13,13 +13,14 @@ def onMouse(event, x, y, flags, param):
         clicked = True
 
 cv2.setMouseCallback('window', onMouse)
+success, frame = cap.read()
 
-while(cap.isOpened()):
-    ret, frame = cap.read()
-
-    cv2.imshow('window', frame)
-    if cv2.waitKey(1) > -1 or clicked:
-        break
+while (cv2.waitKey(1) == -1 and not clicked):
+    if frame is not None:
+        cv2.imshow('window', frame)
+    else:
+        cap = cv2.VideoCapture('video.mp4')
+    success, frame = cap.read()
 
 cap.release()
 cv2.destroyAllWindows()
