@@ -18,6 +18,7 @@ def bring_to_front(hwnd):
 
 wndname = "window8march"
 filename = '\\\\srv1-dc\\NETLOGON\\video.mp4'
+#filename = "E:\\video\\2021-03-04 11-18-05.mkv"
 cap = cv2.VideoCapture(filename)
 cv2.namedWindow(wndname, cv2.WND_PROP_FULLSCREEN)
 HWND = win32gui.FindWindow(None, wndname)
@@ -29,7 +30,8 @@ while cv2.waitKey(1) != 27:
     if frame is not None:
         cv2.imshow(wndname, frame)
     else:
-        cap = cv2.VideoCapture(filename)
+        #cap = cv2.VideoCapture(filename)
+        cap = cv2.VideoCapture('\\\\srv1-dc\\NETLOGON\\video1.mp4')
     success, frame = cap.read()
     bring_to_front(HWND)
 
